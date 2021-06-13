@@ -1,10 +1,13 @@
 const express = require('express');
 const {connectToDB} = require('./repositories/db');
 const {productsRouter} = require('./routes/productRouter');
-const {graphqlHTTP} = require('express-graphql');
-const {graphQLObject} = require('./services/graphQL');
+//const {graphqlHTTP} = require('express-graphql');
+//const {graphQLObject} = require('./services/graphQL');
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res)=> {
     res.json({message: `Welcome page`})
@@ -12,7 +15,7 @@ app.get('/', (req, res)=> {
 
 app.use('/products', productsRouter);
 
-app.use('/graphql', graphqlHTTP(graphQLObject));
+//app.use('/graphql', graphqlHTTP(graphQLObject));
 
 const startServer = async() => {
     const connected = await connectToDB();
@@ -26,3 +29,5 @@ const startServer = async() => {
 }
 
 startServer();
+
+module.exports = app;

@@ -6,7 +6,6 @@ const productsRouter = express.Router();
 let productos = new Products([])
 
 //GET /productos => Me permite listar todos los productos disponibles
-/*TODO: IMPLEMENTADO CON GRAPHQL
 productsRouter.get('/', async (req, res)=> {
     try{
         let products = await productos.getAllProducts();
@@ -17,18 +16,16 @@ productsRouter.get('/', async (req, res)=> {
         return []
     }
 })
-*/
+
 
 //GET /productos/:producto_id  =>  Obtener un producto por su id
-//TODO: IMPLEMENTADO CON GRAPHQL
-/*
 productsRouter.get('/id/:id', async (req, res)=> {
     const {id} = req.params;
     let product = await productos.getProductById(id);
     res.status(200);
     res.json(product);
 })
-*/
+
 
 //GET /productos/:category => Obtener productos por su categoria
 productsRouter.get('/category/:category', async (req, res)=> {
@@ -39,7 +36,6 @@ productsRouter.get('/category/:category', async (req, res)=> {
 })
 
 //POST /productos => Para incorporar productos al listado
-/* TODO: IMPLEMENTADO CON GRAPHQL
 productsRouter.post('/', async (req, res)=> {
     const {name, category, description, foto, price} = req.body;
     let product = {
@@ -52,7 +48,7 @@ productsRouter.post('/', async (req, res)=> {
     let addedProduct = await productos.addProduct(product);
     res.json(addedProduct);
 })
-*/
+
 
 //PATCH /productos/:producto_id => Actualiza un producto por su id
 productsRouter.patch('/:id', async (req, res)=> {
